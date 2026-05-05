@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=max-gnn-overparam
 #SBATCH --partition=rleap_cpu
-#SBATCH --array=0-191%50
+#SBATCH --array=0-383%50
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
@@ -24,7 +24,6 @@ W=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['width'])")
 LR=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['lr'])")
 L_TARGET=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['l_target'])")
 EPOCHS=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['epochs'])")
-NUM_GRAPHS=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['num_graphs'])")
 OUTPUT=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['output'])")
 
 echo "Running task index $SLURM_ARRAY_TASK_ID: Task=$TASK, L=$L, W=$W, LR=$LR"
@@ -36,5 +35,4 @@ python experiment.py \
     --lr $LR \
     --l_target $L_TARGET \
     --epochs $EPOCHS \
-    --num_graphs $NUM_GRAPHS \
     --output $OUTPUT

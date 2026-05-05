@@ -1,0 +1,38 @@
+--------------------- Slurm Task Prolog ------------------------
+Job ID: 2480938
+Job name: max-gnn-overparam
+Host: cn-103
+Date: Mi 6. Mai 00:46:13 CEST 2026
+User: blai.bonet
+Slurm account: rleap
+Slurm partition: rleap_cpu
+Work dir: 
+------------------
+Node usage:
+JOBID PARTITION                                               NAME               USER ST       TIME  NODES NODELIST(REASON)
+2480593_344 rleap_cpu                                  max-gnn-overparam         blai.bonet  R       0:00      1 cn-103
+2480593_345 rleap_cpu                                  max-gnn-overparam         blai.bonet  R       0:00      1 cn-103
+2480593_322 rleap_cpu                                  max-gnn-overparam         blai.bonet  R       0:59      1 cn-103
+2480593_323 rleap_cpu                                  max-gnn-overparam         blai.bonet  R       0:59      1 cn-103
+2480593_261 rleap_cpu                                  max-gnn-overparam         blai.bonet  R       4:00      1 cn-103
+------------------
+Show launch script with:
+sacct -B -j 
+------------------
+--------------------- Slurm Task Prolog ------------------------
+Running task index 344: Task=indset4, L=5, W=32, LR=0.01
+Running: Task=indset4, L=5, W=32, lr=0.010000
+Epoch 050, Loss: 0.0000
+Epoch 100, Loss: 0.0000
+Epoch 150, Loss: 0.0000
+Epoch 200, Loss: 0.0000
+Final Train Loss: 0.0000, Test Acc: 1.0000
+Results saved to results/indset4_L5_W32_lr0.0100.json
+--------------------- Slurm Task Epilog ------------------------
+Job ID: 2480938
+Time: Mi 6. Mai 00:47:29 CEST 2026
+Elapsed Time: 00:01:16
+Billing per second for TRES: billing=288,cpu=8,mem=32G,node=1
+Show resource usage with e.g.:
+sacct -j 2480938 -o Elapsed,TotalCPU,UserCPU,SystemCPU,MaxRSS,ReqTRES%60,MaxDiskRead,MaxDiskWrite
+--------------------- Slurm Task Epilog ------------------------

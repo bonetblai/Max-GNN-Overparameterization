@@ -1,0 +1,15 @@
+{
+    "task": "path",
+    "l_target": 3,
+    "depth": 2,
+    "width": 8,
+    "lr": 0.01,
+    "params": 354,
+    "train_loss": 0.5824900507926941,
+    "test_loss": 0.5464165544509888,
+    "test_acc": 0.77425,
+    "loss_5": 0.6490479898452759,
+    "loss_20": null,
+    "loss_50": null,
+    "loss_100": null
+}

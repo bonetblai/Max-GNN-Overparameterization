@@ -39,19 +39,19 @@ def evaluate(model, loader, criterion, device):
             total_nodes += data.num_nodes
     return total_loss / len(loader.dataset), correct / total_nodes
 
-def run_single_experiment(task, l_target, L, W, lr, num_graphs, epochs, device):
-    # Generate data
-    if task == 'path':
-        full_dataset = generate_colored_path_data(num_graphs=num_graphs + 200, l_target=l_target)
-        in_channels = 3 # num_colors
-    elif task == 'cycle':
-        full_dataset = generate_cycle_data(num_graphs=num_graphs + 200, l_target=l_target)
-        in_channels = 1 # degree
-    else:
-        raise ValueError("Unknown task")
-
-    train_dataset = full_dataset[:num_graphs]
-    test_dataset = full_dataset[num_graphs:]
+def run_single_experiment(task, l_target, L, W, lr, epochs, device):
+    # Load pre-generated data
+    train_path = f'data/{task}_train.pt'
+    test_path = f'data/{task}_test.pt'
+    
+    if not os.path.exists(train_path) or not os.path.exists(test_path):
+        raise FileNotFoundError(f"Dataset files for {task} not found in data/. Run collect_data.py first.")
+        
+    train_dataset = torch.load(train_path)
+    test_dataset = torch.load(test_path)
+    
+    # Determine in_channels from the first sample
+    in_channels = train_dataset[0].x.shape[1]
     
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
@@ -97,12 +97,11 @@ def run_single_experiment(task, l_target, L, W, lr, num_graphs, epochs, device):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--task', type=str, default='path', choices=['path', 'cycle'])
+    parser.add_argument('--task', type=str, default='path', choices=['path', 'cycle', 'k4', 'indset4'])
     parser.add_argument('--l_target', type=int, default=3)
     parser.add_argument('--depth', type=int, default=3)
     parser.add_argument('--width', type=int, default=16)
     parser.add_argument('--lr', type=float, default=0.005)
-    parser.add_argument('--num_graphs', type=int, default=1000)
     parser.add_argument('--epochs', type=int, default=200)
     parser.add_argument('--output', type=str, help='Path to save JSON results')
     args = parser.parse_args()
@@ -116,7 +115,6 @@ if __name__ == "__main__":
         L=args.depth,
         W=args.width,
         lr=args.lr,
-        num_graphs=args.num_graphs,
         epochs=args.epochs,
         device=device
     )

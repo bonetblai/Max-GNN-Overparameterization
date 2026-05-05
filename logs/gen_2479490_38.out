@@ -1,0 +1,41 @@
+--------------------- Slurm Task Prolog ------------------------
+Job ID: 2479530
+Job name: gen-data
+Host: cn-102
+Date: Mi 6. Mai 00:19:13 CEST 2026
+User: blai.bonet
+Slurm account: rleap
+Slurm partition: rleap_cpu
+Work dir: 
+------------------
+Node usage:
+JOBID PARTITION                                               NAME               USER ST       TIME  NODES NODELIST(REASON)
+2479490_26 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_27 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_28 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_29 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_30 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_31 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_32 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_33 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_34 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_35 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_36 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_37 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2479490_38 rleap_cpu                                           gen-data         blai.bonet  R       0:00      1 cn-102
+2477466 rleap_cpu                                           Training  maximilian.kannen  R    1:33:02      1 cn-102
+------------------
+Show launch script with:
+sacct -B -j 
+------------------
+--------------------- Slurm Task Prolog ------------------------
+Generating 100 graphs for task: indset4 (nodes=20)
+Saved to data/shards/indset4_train_shard8.pt
+--------------------- Slurm Task Epilog ------------------------
+Job ID: 2479530
+Time: Mi 6. Mai 00:19:42 CEST 2026
+Elapsed Time: 00:00:29
+Billing per second for TRES: billing=52,cpu=1,mem=8G,node=1
+Show resource usage with e.g.:
+sacct -j 2479530 -o Elapsed,TotalCPU,UserCPU,SystemCPU,MaxRSS,ReqTRES%60,MaxDiskRead,MaxDiskWrite
+--------------------- Slurm Task Epilog ------------------------

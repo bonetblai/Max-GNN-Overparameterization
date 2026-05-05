@@ -10,7 +10,7 @@ def main():
     args = parser.parse_args()
 
     # Define parameter grid
-    tasks = ['path', 'cycle']
+    tasks = ['path', 'cycle', 'k4', 'indset4']
     depths = [1, 2, 3, 4, 5, 6, 7, 8]
     widths = [8, 16, 32, 64]
     lrs = [0.001, 0.005, 0.01]
@@ -18,7 +18,6 @@ def main():
     # Constants
     l_target = 3
     epochs = 200
-    num_graphs = 1000
 
     configs = []
     for task in tasks:
@@ -33,7 +32,6 @@ def main():
                         'lr': lr,
                         'l_target': l_target,
                         'epochs': epochs,
-                        'num_graphs': num_graphs,
                         'output': output_path
                     })
 
@@ -50,7 +48,7 @@ def main():
     with open(submit_script, 'w') as f:
         f.write(f"""#!/bin/bash
 #SBATCH --job-name=max-gnn-overparam
-#SBATCH --partition=rleap_cou
+#SBATCH --partition=rleap_cpu
 #SBATCH --array=0-{len(configs) - 1}%50
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
@@ -74,7 +72,6 @@ W=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['width'])")
 LR=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['lr'])")
 L_TARGET=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['l_target'])")
 EPOCHS=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['epochs'])")
-NUM_GRAPHS=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['num_graphs'])")
 OUTPUT=$(python3 -c "import json; print(json.loads('$CONFIG_LINE')['output'])")
 
 echo "Running task index $SLURM_ARRAY_TASK_ID: Task=$TASK, L=$L, W=$W, LR=$LR"
@@ -86,7 +83,6 @@ python experiment.py \\
     --lr $LR \\
     --l_target $L_TARGET \\
     --epochs $EPOCHS \\
-    --num_graphs $NUM_GRAPHS \\
     --output $OUTPUT
 """)
 

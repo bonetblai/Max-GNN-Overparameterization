@@ -1,0 +1,45 @@
+--------------------- Slurm Task Prolog ------------------------
+Job ID: 2480492
+Job name: gen-data
+Host: cn-114
+Date: Mi 6. Mai 00:30:14 CEST 2026
+User: blai.bonet
+Slurm account: rleap
+Slurm partition: rleap_cpu
+Work dir: 
+------------------
+Node usage:
+JOBID PARTITION                                               NAME               USER ST       TIME  NODES NODELIST(REASON)
+2480426_62 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_63 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_64 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_65 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_66 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_67 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_68 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_69 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_70 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_71 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_72 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_73 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_74 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_75 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_76 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_77 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_78 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+2480426_79 rleap_cpu                                           gen-data         blai.bonet  R       0:01      1 cn-114
+------------------
+Show launch script with:
+sacct -B -j 
+------------------
+--------------------- Slurm Task Prolog ------------------------
+Generating 100 graphs for task: k4 (nodes=40)
+Saved to data/shards/k4_test_shard5.pt
+--------------------- Slurm Task Epilog ------------------------
+Job ID: 2480492
+Time: Mi 6. Mai 00:30:26 CEST 2026
+Elapsed Time: 00:00:12
+Billing per second for TRES: billing=52,cpu=1,mem=8G,node=1
+Show resource usage with e.g.:
+sacct -j 2480492 -o Elapsed,TotalCPU,UserCPU,SystemCPU,MaxRSS,ReqTRES%60,MaxDiskRead,MaxDiskWrite
+--------------------- Slurm Task Epilog ------------------------
