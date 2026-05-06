@@ -10,14 +10,16 @@ def main():
     args = parser.parse_args()
 
     # Define parameter grid
-    tasks = ['path', 'cycle', 'k4', 'indset4']
-    depths = [1, 2, 3, 4, 5, 6, 7, 8]
-    widths = [8, 16, 32, 64]
-    lrs = [0.001, 0.005, 0.01]
+    #tasks = ['path', 'cycle', 'k4', 'indset4']
+    tasks = ['path', 'cycle', 'k4']
+    depths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    widths = [8, 16, 32, 64, 128]
+    #lrs = [0.001, 0.005, 0.01]
+    lrs = [0.001, 0.005, 0.01, 0.0001, 0.0005]
     
     # Constants
     l_target = 3
-    epochs = 200
+    epochs = 300
 
     configs = []
     for task in tasks:

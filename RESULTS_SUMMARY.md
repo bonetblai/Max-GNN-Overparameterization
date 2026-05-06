@@ -1,29 +1,41 @@
-# Experiment Results Summary: Max-GNN Over-parameterization (Phase 2)
+# Max-GNN Over-parameterization Research Summary
 
-This report summarizes the expanded investigation into the effects of over-parameterization across four graph tasks: Monochromatic Path, Cycle Detection, Monochromatic K4 Clique, and Independent Set of size 4.
+## Task: K4
 
-## Key Findings
+- **Best Training Loss:** 0.337518
+- **Optimal Configuration:** Depth=10, Width=128, LR=0.0005
 
-### 1. Depth-Dependent Optimization
-For all non-trivial tasks, increasing GNN depth ($L$) beyond the minimal expressive requirements significantly reduced the training risk. 
+| Depth | Width | LR | Params | Train Loss | Test Acc |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 10 | 128 | 0.0005 | 462082 | 0.337518 | 0.2413 |
+| 7 | 128 | 0.0005 | 313858 | 0.337707 | 0.2420 |
+| 8 | 128 | 0.0005 | 363266 | 0.337735 | 0.2407 |
+| 9 | 128 | 0.0005 | 412674 | 0.337739 | 0.2419 |
+| 9 | 128 | 0.001 | 412674 | 0.337752 | 0.2422 |
 
-- **Cycle Detection:** Depth 6 was optimal, reducing loss by **~13,000x** compared to Depth 1.
-- **K4 Clique:** A significantly harder task. While it didn't reach zero loss, increasing depth from 1 to 8 reduced the training loss from **0.54** to **0.33**, showing a steady improvement in the optimization landscape as depth increased.
-- **Path Detection:** Continued to show strong benefits from over-parameterization, with Depth 8 providing the lowest training risk.
+## Task: Cycle
 
-### 2. Comparative Performance (Best Training Loss)
+- **Best Training Loss:** 0.000000
+- **Optimal Configuration:** Depth=10, Width=128, LR=0.0005
 
-| Task | Best at $L=1$ | Best Overall | Optimal Configuration | Improvement |
-| :--- | :--- | :--- | :--- | :--- |
-| **Cycle** | 0.277521 | **0.000021** | L=6, W=64, LR=0.001 | 13,215x |
-| **Path** | 0.242849 | **0.001926** | L=8, W=32, LR=0.005 | 126x |
-| **K4 Clique** | 0.544764 | **0.338994** | L=8, W=64, LR=0.001 | 1.6x |
-| **Ind. Set 4*** | 0.000000 | **0.000000** | L=8, W=16, LR=0.005 | - |
+| Depth | Width | LR | Params | Train Loss | Test Acc |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 10 | 128 | 0.0005 | 461826 | 0.000000 | 0.9812 |
+| 6 | 128 | 0.001 | 264194 | 0.000000 | 0.9819 |
+| 7 | 128 | 0.001 | 313602 | 0.000001 | 0.9831 |
+| 8 | 128 | 0.0005 | 363010 | 0.000001 | 0.9766 |
+| 7 | 128 | 0.0005 | 313602 | 0.000001 | 0.9808 |
 
-*\*Note: Independent Set 4 proved trivial in the current random graph setting (100% positive label density), reaching near-zero loss even at L=1.*
+## Task: Path
 
-### 3. Generalization (Train vs. Test)
-Experiments were conducted with Training graphs of 20 nodes and Testing graphs of 40 nodes. While the primary focus was on training risk minimization, the depth-over-parameterized models generally maintained or improved their performance on the larger test graphs, supporting the idea that simpler optimization landscapes do not necessarily hurt generalization in this architecture.
+- **Best Training Loss:** 0.001907
+- **Optimal Configuration:** Depth=6, Width=128, LR=0.001
 
-## Conclusion
-The results reinforce the core hypothesis: **Increasing depth simplifies the optimization landscape for Max-Aggregation GNNs.** Even for the hardest task (K4), the model showed a clear trend of easier optimization as depth increased. The transition to offline data generation and larger test sets has established a robust baseline for the upcoming paper.
+| Depth | Width | LR | Params | Train Loss | Test Acc |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 6 | 128 | 0.001 | 264450 | 0.001907 | 0.9985 |
+| 7 | 128 | 0.0005 | 313858 | 0.001909 | 0.9979 |
+| 8 | 128 | 0.0005 | 363266 | 0.001930 | 0.9987 |
+| 7 | 128 | 0.001 | 313858 | 0.001934 | 0.9990 |
+| 9 | 64 | 0.001 | 103938 | 0.001947 | 0.9991 |
+

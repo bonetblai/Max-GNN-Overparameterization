@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=max-gnn-overparam
 #SBATCH --partition=rleap_cpu
-#SBATCH --array=0-383%50
+#SBATCH --array=0-749%50
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
